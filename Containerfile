@@ -1,5 +1,6 @@
 ARG BASE_IMAGE
-FROM ${BASE_IMAGE} AS sdk-builder
+#FROM ${BASE_IMAGE} AS sdk-builder
+FROM quay.io/centos/centos:stream9 as sdk-builder
 ARG AWS_SDK_CPP_VERSION=1.11.463
 # Install packages
 RUN INSTALL_PKGS="clang unzip cmake zlib-devel openssl-devel libcurl-devel git p11-kit-devel json-c-devel" \
