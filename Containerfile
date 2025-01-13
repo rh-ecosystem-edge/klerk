@@ -1,4 +1,5 @@
-FROM quay.io/centos/centos:stream9 AS sdk-builder
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE} AS sdk-builder
 ARG AWS_SDK_CPP_VERSION=1.11.463
 # Install packages
 RUN INSTALL_PKGS="clang unzip cmake zlib-devel openssl-devel libcurl-devel git p11-kit-devel json-c-devel" \
@@ -20,8 +21,7 @@ RUN git clone https://github.com/JackOfMostTrades/aws-kms-pkcs11.git && \
     cd aws-kms-pkcs11 && \
     AWS_SDK_PATH=~/aws-sdk-cpp make
 
-#FROM ${BASE_IMAGE}
-FROM quay.io/centos/centos:stream9
+FROM ${BASE_IMAGE}
 ARG YQ_VERSION=4.34.1
 # Install packages
 RUN INSTALL_PKGS="openssl openssl-pkcs11 kernel-devel unzip less" \
