@@ -1,5 +1,3 @@
-ARG BASE_IMAGE=quay.io/centos/centos:stream9
-#FROM ${BASE_IMAGE} AS sdk-builder
 FROM quay.io/centos/centos:stream9 AS sdk-builder
 ARG AWS_SDK_CPP_VERSION=1.11.463
 # Install packages
@@ -44,4 +42,3 @@ COPY --from=sdk-builder /aws-kms-pkcs11/aws_kms_pkcs11.so /usr/lib64/pkcs11/
 COPY openssl/config.json openssl/x509.genkey openssl/openssl-pkcs11.conf /etc/aws-kms-pkcs11/
 # Copy shell script to update config
 COPY --chmod=0755 scripts/enable_kms_pkcs11 /bin/enable_kms_pkcs11
-
