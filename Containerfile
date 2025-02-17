@@ -24,7 +24,7 @@ RUN git clone https://github.com/JackOfMostTrades/aws-kms-pkcs11.git && \
 FROM ${BASE_IMAGE}
 ARG YQ_VERSION=4.34.1
 # Install packages
-RUN INSTALL_PKGS="openssl openssl-pkcs11 kernel-devel unzip less" \
+RUN INSTALL_PKGS="openssl openssl-pkcs11 kernel-devel unzip less buildah" \
     && dnf install -y --setopt=tsflags=nodocs $INSTALL_PKGS \
     && dnf -y clean all \
     && rm -rf /var/cache/yum
