@@ -26,7 +26,7 @@ spec:
   - name: dockerfile
     value: Containerfile
   - name: build-args-file
-    value: argfile.conf     
+    value: argfile.conf
   pipelineSpec:
     description: |
       This pipeline is ideal for building container images from a Containerfile while maintaining trust after pipeline customization.
@@ -422,7 +422,7 @@ spec:
         value:
         - $(params.build-args[*])
       - name: BUILD_ARGS_FILE
-        value: $(params.build-args-file)          
+        value: $(params.build-args-file)
       - name: SOURCE_ARTIFACT
         value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
       - name: CACHI2_ARTIFACT
@@ -434,7 +434,7 @@ spec:
         - name: name
           value: sast-coverity-check-oci-ta
         - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-sast-coverity-check-oci-ta:0.2          
+          value: quay.io/konflux-ci/tekton-catalog/task-sast-coverity-check-oci-ta:0.2
         - name: kind
           value: task
         resolver: bundles
@@ -464,7 +464,7 @@ spec:
         - name: name
           value: coverity-availability-check
         - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-coverity-availability-check:0.2@sha256:91ba738df7ec548d4127163e07a88de06568a350fbf581405cc8fc8498f6153c          
+          value: quay.io/konflux-ci/tekton-catalog/task-coverity-availability-check:0.2@sha256:91ba738df7ec548d4127163e07a88de06568a350fbf581405cc8fc8498f6153c
         - name: kind
           value: task
         resolver: bundles
@@ -588,7 +588,8 @@ spec:
       optional: true
     - name: netrc
       optional: true
-  taskRunTemplate: {}
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-klerk
   workspaces:
   - name: git-auth
     secret:
